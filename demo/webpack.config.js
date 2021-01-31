@@ -3,11 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin') 
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry:{
     app:'./src/index.js'
   },
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
     hot: true
@@ -23,19 +23,9 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     publicPath: '/'
   },
-  optimization: {
-    moduleIds: 'deterministic',
-    runtimeChunk: 'single',
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
-    },
-  },
+  // optimization: {
+  //   usedExports: true,
+  // },
   module: {
     rules: [
       {
