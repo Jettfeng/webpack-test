@@ -11,24 +11,12 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: [
-          {
-            loader:'style-loader',
-            options: {
-              injectType:'linkTag'
-            }
-          },
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-          },
-        ],
+        use: ['style-loader',"css-loader"],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource'
+      }
     ],
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "css/[name].css",
-    }),
-  ],
+  }
 };
