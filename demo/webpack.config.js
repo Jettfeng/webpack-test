@@ -14,13 +14,25 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new HtmlWebpackPlugin({
-      title:'Development'
+      title: 'Caching'
     })
   ],
   output: {
-    filename: "[name].bundle.js",
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, "dist"),
     publicPath: '/'
+  },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
   },
   module: {
     rules: [
